@@ -19,7 +19,7 @@ class ReviewSeeder extends Seeder
 
         $user = User::where('email', 'yamada@example.com')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -28,7 +28,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784422100524')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -37,7 +37,7 @@ class ReviewSeeder extends Seeder
         
         $book = Book::where('isbn', '9784873115658')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -46,7 +46,7 @@ class ReviewSeeder extends Seeder
         
         $book = Book::where('isbn', '9784863940246')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 3,
@@ -55,7 +55,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784101010021')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -64,7 +64,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784309226712')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -73,7 +73,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784048930598')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -85,7 +85,7 @@ class ReviewSeeder extends Seeder
 
         $user = User::where('email', 'suzuki@example.com')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -94,7 +94,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784422100524')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -103,7 +103,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784873115658')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -112,7 +112,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784478025819')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 3,
@@ -121,7 +121,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784163902302')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -130,7 +130,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784822289607')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -139,7 +139,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784822251468')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -151,7 +151,7 @@ class ReviewSeeder extends Seeder
 
         $user = User::where('email', 'tanaka@example.com')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 3,
@@ -160,7 +160,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784863940246')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -169,7 +169,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784101010021')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -178,7 +178,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784309226712')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 3,
@@ -187,7 +187,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784048930598')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -196,7 +196,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784478025819')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -208,7 +208,7 @@ class ReviewSeeder extends Seeder
 
         $user = User::where('email', 'sato@example.com')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -217,7 +217,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784873115658')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -226,7 +226,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784863940246')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -235,7 +235,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784478025819')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -244,7 +244,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784822289607')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -253,7 +253,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784822251468')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -265,7 +265,7 @@ class ReviewSeeder extends Seeder
 
         $user = User::where('email', 'takahashi@example.com')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
@@ -274,7 +274,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784309226712')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -283,7 +283,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784048930598')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 3,
@@ -292,7 +292,7 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784478025819')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
@@ -301,16 +301,16 @@ class ReviewSeeder extends Seeder
 
         $book = Book::where('isbn', '9784163902302')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 5,
             'description' => '芸人という職業の葛藤や孤独を描いた点が、印象的でした。',
         ]);
 
-        $book = Book::where('isbn', '9784163902302')->first();
+        $book = Book::where('isbn', '9784822289607')->first();
 
-        $review = Review::factory()->create([
+        Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
             'evaluation' => 4,
