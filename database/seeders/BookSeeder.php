@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Book;
+use App\Models\User;
 use App\Models\Genre;
 
 class BookSeeder extends Seeder
@@ -13,9 +14,12 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = User::where('email', 'yamada@example.com')->firstOrFail();
+
         $book1 = Book::firstOrCreate(
             ['isbn' => '9784101010014'],
             [
+                'user_id' => $user->id,
                 'title' => '吾輩は猫である',
                 'author' => '夏目漱石',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=1',
@@ -24,13 +28,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::where('genre', '小説')->first();
+        $genre = Genre::where('name', '小説')->first();
 
         $book1->genres()->sync([$genre->id]);
 
         $book2 = Book::firstOrCreate(
             ['isbn' => '9784422100524'],
             [
+                'user_id' => $user->id,
                 'title' => '人を動かす',
                 'author' => 'D・カーネギー',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=2',
@@ -39,13 +44,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('genre', ['ビジネス','自己啓発'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス','自己啓発'])->get();
 
-        $book2->genres()->sync([$genre->pluck('id')]);
+        $book2->genres()->sync($genre->pluck('id'));
 
         $book3 = Book::firstOrCreate(
             ['isbn' => '9784873115658'],
             [
+                'user_id' => $user->id,
                 'title' => 'リーダブルコード',
                 'author' => 'Dustin Boswell',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=3',
@@ -54,13 +60,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::where('genre', '技術書')->first();
+        $genre = Genre::where('name', '技術書')->first();
 
         $book3->genres()->sync([$genre->id]);
 
         $book4 = Book::firstOrCreate(
             ['isbn' => '9784863940246'],
             [
+                'user_id' => $user->id,
                 'title' => '7つの習慣',
                 'author' => 'スティーブン・R・コヴィー',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=4',
@@ -69,13 +76,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('genre', ['ビジネス','自己啓発'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス','自己啓発'])->get();
 
-        $book4->genres()->sync([$genre->pluck('id')]);
+        $book4->genres()->sync($genre->pluck('id'));
 
         $book5 = Book::firstOrCreate(
             ['isbn' => '9784101010021'],
             [
+                'user_id' => $user->id,
                 'title' => '坊っちゃん',
                 'author' => '夏目漱石',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=5',
@@ -84,13 +92,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::where('genre', '小説')->first();
+        $genre = Genre::where('name', '小説')->first();
 
         $book5->genres()->sync([$genre->id]);
 
         $book6 = Book::firstOrCreate(
             ['isbn' => '9784309226712'],
             [
+                'user_id' => $user->id,
                 'title' => 'サピエンス全史',
                 'author' => 'ユヴァル・ノア・ハラリ',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=6',
@@ -99,13 +108,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('genre', ['歴史','科学'])->get();
+        $genre = Genre::whereIn('name', ['歴史','科学'])->get();
 
-        $book6->genres()->sync([$genre->pluck('id')]);
+        $book6->genres()->sync($genre->pluck('id'));
 
         $book7 = Book::firstOrCreate(
             ['isbn' => '9784048930598'],
             [
+                'user_id' => $user->id,
                 'title' => 'Clean Code',
                 'author' => 'Robert C. Martin',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=7',
@@ -114,13 +124,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::where('genre', '技術書')->first();
+        $genre = Genre::where('name', '技術書')->first();
 
         $book7->genres()->sync([$genre->id]);
 
         $book8 = Book::firstOrCreate(
             ['isbn' => '9784478025819'],
             [
+                'user_id' => $user->id,
                 'title' => '嫌われる勇気',
                 'author' => '岸見一郎・古賀史健',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=8',
@@ -129,13 +140,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::where('genre', '自己啓発')->first();
+        $genre = Genre::where('name', '自己啓発')->first();
 
         $book8->genres()->sync([$genre->id]);
 
         $book9 = Book::firstOrCreate(
             ['isbn' => '9784163902302'],
             [
+                'user_id' => $user->id,
                 'title' => ' 火花',
                 'author' => ' 又吉直樹',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=9',
@@ -144,13 +156,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::where('genre', '小説')->first();
+        $genre = Genre::where('name', '小説')->first();
 
         $book9->genres()->sync([$genre->id]);
 
         $book10 = Book::firstOrCreate(
-            ['isbn' => '9784309226712'],
+            ['isbn' => '9784822289607'],
             [
+                'user_id' => $user->id,
                 'title' => 'FACTFULNESS',
                 'author' => 'ハンス・ロスリング',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=10',
@@ -159,13 +172,14 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('genre', ['ビジネス','科学'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス','科学'])->get();
 
-        $book10->genres()->sync([$genre->pluck('id')]);
+        $book10->genres()->sync($genre->pluck('id'));
 
         $book11 = Book::firstOrCreate(
             ['isbn' => '9784822251468'],
             [
+                'user_id' => $user->id,
                 'title' => 'コンテナ物語',
                 'author' => 'マルク・レビンソン',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=11',
@@ -174,8 +188,8 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('genre', ['ビジネス','歴史'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス','歴史'])->get();
 
-        $book11->genres()->sync([$genre->pluck('id')]);
+        $book11->genres()->sync($genre->pluck('id'));
     }
 }
