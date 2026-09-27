@@ -10,4 +10,11 @@ class FavoriteController extends Controller
     {
         return view('books.show');
     }
+
+    public function toggle(Book $book)
+    {
+        Auth::user()->favoriteBooks()->toggle($book->id);
+
+        return back();
+    }
 }
