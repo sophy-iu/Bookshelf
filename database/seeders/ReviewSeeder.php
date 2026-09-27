@@ -22,8 +22,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '物語の展開が面白く、最後まで楽しんで読めました。',
+            'rating' => 5,
+            'comment' => '物語の展開が面白く、最後まで楽しんで読めました。',
         ]);
 
         $book = Book::where('isbn', '9784422100524')->first();
@@ -31,8 +31,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '具体例が多く、日常でも実践しやすい内容でした。',
+            'rating' => 4,
+            'comment' => '具体例が多く、日常でも実践しやすい内容でした。',
         ]);
         
         $book = Book::where('isbn', '9784873115658')->first();
@@ -40,8 +40,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => 'コードを書く上で大切な考え方を学べました。',
+            'rating' => 5,
+            'comment' => 'コードを書く上で大切な考え方を学べました。',
         ]);
         
         $book = Book::where('isbn', '9784863940246')->first();
@@ -49,8 +49,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 3,
-            'description' => '興味深い内容でしたが、少し難しく感じる部分もありました。',
+            'rating' => 3,
+            'comment' => '興味深い内容でしたが、少し難しく感じる部分もありました。',
         ]);
 
         $book = Book::where('isbn', '9784101010021')->first();
@@ -58,8 +58,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '読みやすく、考えさせられる内容でした。',
+            'rating' => 4,
+            'comment' => '読みやすく、考えさせられる内容でした。',
         ]);
 
         $book = Book::where('isbn', '9784309226712')->first();
@@ -67,8 +67,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '歴史の流れが分かりやすくまとめられていました。',
+            'rating' => 4,
+            'comment' => '歴史の流れが分かりやすくまとめられていました。',
         ]);
 
         $book = Book::where('isbn', '9784048930598')->first();
@@ -76,8 +76,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '新しい知識が多く、とても勉強になりました。',
+            'rating' => 5,
+            'comment' => '新しい知識が多く、とても勉強になりました。',
         ]);
 
         // 鈴木
@@ -88,8 +88,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '登場人物が魅力的で、楽しく読むことができました。',
+            'rating' => 4,
+            'comment' => '登場人物が魅力的で、楽しく読むことができました。',
         ]);
 
         $book = Book::where('isbn', '9784422100524')->first();
@@ -97,8 +97,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '人との接し方について改めて考えるきっかけになりました。',
+            'rating' => 5,
+            'comment' => '人との接し方について改めて考えるきっかけになりました。',
         ]);
 
         $book = Book::where('isbn', '9784873115658')->first();
@@ -106,8 +106,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '実際の開発でも活用できそうな内容が多かったです。',
+            'rating' => 4,
+            'comment' => '実際の開発でも活用できそうな内容が多かったです。',
         ]);
 
         $book = Book::where('isbn', '9784478025819')->first();
@@ -115,8 +115,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 3,
-            'description' => '参考になる部分はありましたが、もう少し詳しい説明が欲しかったです。',
+            'rating' => 3,
+            'comment' => '参考になる部分はありましたが、もう少し詳しい説明が欲しかったです。',
         ]);
 
         $book = Book::where('isbn', '9784163902302')->first();
@@ -124,8 +124,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '作品の背景まで知ることができ、とても楽しめました。',
+            'rating' => 5,
+            'comment' => '作品の背景まで知ることができ、とても楽しめました。',
         ]);
 
         $book = Book::where('isbn', '9784822289607')->first();
@@ -133,8 +133,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '旅行前に読んでおくと役立つ情報が多いと思います。',
+            'rating' => 4,
+            'comment' => '旅行前に読んでおくと役立つ情報が多いと思います。',
         ]);
 
         $book = Book::where('isbn', '9784822251468')->first();
@@ -142,8 +142,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => 'テンポよく読めて、全体的に楽しめました。',
+            'rating' => 4,
+            'comment' => 'テンポよく読めて、全体的に楽しめました。',
         ]);
 
         // 田中
@@ -154,8 +154,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 3,
-            'description' => '独特な文章表現が印象に残りました。',
+            'rating' => 3,
+            'comment' => '独特な文章表現が印象に残りました。',
         ]);
 
         $book = Book::where('isbn', '9784863940246')->first();
@@ -163,8 +163,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '自分の考え方を見直す良いきっかけになりました。',
+            'rating' => 4,
+            'comment' => '自分の考え方を見直す良いきっかけになりました。',
         ]);
 
         $book = Book::where('isbn', '9784101010021')->first();
@@ -172,8 +172,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '文章が読みやすく、内容にも共感できました。',
+            'rating' => 5,
+            'comment' => '文章が読みやすく、内容にも共感できました。',
         ]);
 
         $book = Book::where('isbn', '9784309226712')->first();
@@ -181,8 +181,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 3,
-            'description' => '情報量が多く、じっくり読むのに向いている本だと思います。',
+            'rating' => 3,
+            'comment' => '情報量が多く、じっくり読むのに向いている本だと思います。',
         ]);
 
         $book = Book::where('isbn', '9784048930598')->first();
@@ -190,8 +190,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '難しいテーマが分かりやすく説明されていました。',
+            'rating' => 4,
+            'comment' => '難しいテーマが分かりやすく説明されていました。',
         ]);
 
         $book = Book::where('isbn', '9784478025819')->first();
@@ -199,8 +199,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '知らなかった作品についても興味を持つことができました。',
+            'rating' => 4,
+            'comment' => '知らなかった作品についても興味を持つことができました。',
         ]);
 
         // 佐藤
@@ -211,8 +211,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '仕事だけでなく普段の人間関係にも役立つと思いました。',
+            'rating' => 4,
+            'comment' => '仕事だけでなく普段の人間関係にも役立つと思いました。',
         ]);
 
         $book = Book::where('isbn', '9784873115658')->first();
@@ -220,8 +220,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '読みやすいコードについて具体的に理解できました。',
+            'rating' => 5,
+            'comment' => '読みやすいコードについて具体的に理解できました。',
         ]);
 
         $book = Book::where('isbn', '9784863940246')->first();
@@ -229,8 +229,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '前向きになれる内容で、何度か読み返したいと思います。',
+            'rating' => 5,
+            'comment' => '前向きになれる内容で、何度か読み返したいと思います。',
         ]);
 
         $book = Book::where('isbn', '9784478025819')->first();
@@ -238,8 +238,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '読みやすく、考えさせられる内容でした。',
+            'rating' => 4,
+            'comment' => '読みやすく、考えさせられる内容でした。',
         ]);
 
         $book = Book::where('isbn', '9784822289607')->first();
@@ -247,8 +247,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => 'データが分かりやすくまとめられていました。',
+            'rating' => 5,
+            'comment' => 'データが分かりやすくまとめられていました。',
         ]);
 
         $book = Book::where('isbn', '9784822251468')->first();
@@ -256,8 +256,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '読みやすかったですが、好みが分かれる内容だと思います。',
+            'rating' => 5,
+            'comment' => '読みやすかったですが、好みが分かれる内容だと思います。',
         ]);
 
         // 高橋
@@ -268,8 +268,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '気軽に読める一方で、印象に残る部分も多かったです。',
+            'rating' => 4,
+            'comment' => '気軽に読める一方で、印象に残る部分も多かったです。',
         ]);
 
         $book = Book::where('isbn', '9784309226712')->first();
@@ -277,8 +277,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '歴史についてさらに調べてみたくなる内容でした。',
+            'rating' => 5,
+            'comment' => '歴史についてさらに調べてみたくなる内容でした。',
         ]);
 
         $book = Book::where('isbn', '9784048930598')->first();
@@ -286,8 +286,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 3,
-            'description' => '少し専門的でしたが、興味深い内容でした。',
+            'rating' => 3,
+            'comment' => '少し専門的でしたが、興味深い内容でした。',
         ]);
 
         $book = Book::where('isbn', '9784478025819')->first();
@@ -295,8 +295,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '分かりやすい説明で、実際に試してみたくなりました。',
+            'rating' => 5,
+            'comment' => '分かりやすい説明で、実際に試してみたくなりました。',
         ]);
 
         $book = Book::where('isbn', '9784163902302')->first();
@@ -304,8 +304,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 5,
-            'description' => '芸人という職業の葛藤や孤独を描いた点が、印象的でした。',
+            'rating' => 5,
+            'comment' => '芸人という職業の葛藤や孤独を描いた点が、印象的でした。',
         ]);
 
         $book = Book::where('isbn', '9784822289607')->first();
@@ -313,8 +313,8 @@ class ReviewSeeder extends Seeder
         Review::create([
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'evaluation' => 4,
-            'description' => '身近な例があり、科学を楽しく学ぶことができました。',
+            'rating' => 4,
+            'comment' => '身近な例があり、科学を楽しく学ぶことができました。',
         ]);
     }
 }

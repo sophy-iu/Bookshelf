@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Book;
-
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -32,6 +33,23 @@ class BookController extends Controller
         Auth::user()->books()->create($validated);
 
         return redirect()->route('books.index');
+    }
+
+    public function post(Request $request, Book $book)
+    {
+        $request->validate([
+            'rating' => ['required', 'integer', 'between:1,5'],
+            'comment' => ['required', 'string'],
+        ]);
+
+        Review::create([
+            'user_id' => Auth::id(),
+            'book_id' => $book->id,
+            'rating' => $request->rating,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect()->back();
     }
 
     public function ranking()

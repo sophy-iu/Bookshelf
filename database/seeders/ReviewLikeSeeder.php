@@ -18,34 +18,34 @@ class ReviewLikeSeeder extends Seeder
 
         $reviewIds = Review::where('user_id','!=',$user->id)->orderBy('id')->offset(0)->limit(5)->pluck('id');
 
-        $user->reviewLikes()->syncWithoutDetaching($reviewIds);
+        $user->likedReviews()->syncWithoutDetaching($reviewIds);
 
         // 鈴木
         $user = User::where('email', 'suzuki@example.com')->first();
 
         $reviewIds = Review::where('user_id','!=',$user->id)->orderBy('id')->offset(3)->limit(5)->pluck('id');
 
-        $user->reviewLikes()->syncWithoutDetaching($reviewIds);
+        $user->likedReviews()->syncWithoutDetaching($reviewIds);
 
         // 田中
         $user = User::where('email', 'tanaka@example.com')->first();
 
         $reviewIds = Review::where('user_id','!=',$user->id)->orderBy('id')->offset(6)->limit(5)->pluck('id');
 
-        $user->reviewLikes()->syncWithoutDetaching($reviewIds);
+        $user->likedReviews()->syncWithoutDetaching($reviewIds);
 
         // 佐藤
         $user = User::where('email', 'sato@example.com')->first();
 
         $reviewIds = Review::where('user_id','!=',$user->id)->orderBy('id')->offset(9)->limit(5)->pluck('id');
 
-        $user->reviewLikes()->syncWithoutDetaching($reviewIds);
+        $user->likedReviews()->syncWithoutDetaching($reviewIds);
 
         // 高橋
         $user = User::where('email', 'takahashi@example.com')->first();
 
         $reviewIds = Review::where('user_id','!=',$user->id)->orderBy('id')->offset(12)->limit(5)->pluck('id');
 
-        $user->reviewLikes()->syncWithoutDetaching($reviewIds);
+        $user->likedReviews()->syncWithoutDetaching($reviewIds);
     }
 }
