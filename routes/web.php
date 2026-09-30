@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/',[BookController::class,'index']) ->name('books.index');
-Route::get('/books/{book}', [BookController::class, 'show']) ->name('books.show');
 
 Route::middleware(['auth'])->group(function() {
        Route::get('/books/create', [BookController::class, 'create']) ->name('books.create');
        Route::post('/books', [BookController::class, 'store'])->name('books.store');
-       Route::get('/books/{book}/edit', [BookController::class, 'edit']);
+       Route::get('/books/{book}/edit', [BookController::class, 'edit']) ->name('books.edit');
+       Route::post('/books/{book}/delete', [BookController::class, 'delete']) ->name('books.destroy');
+       Route::put('/books/{book}/update', [BookController::class, 'update']) ->name('books.update');
 
        Route::post('/books/{book}/reviews', [BookController::class, 'post'])->name('reviews.store');
        Route::post('/books/{book}/like', [BookController::class, 'store'])->name('reviews.like');
@@ -35,3 +36,5 @@ Route::middleware(['auth'])->group(function() {
 
        Route::get('/ranking', [BookController::class, 'ranking']) ->name('ranking.index');
 });
+
+Route::get('/books/{book}', [BookController::class, 'show']) ->name('books.show');
