@@ -23,7 +23,7 @@ class BookSeeder extends Seeder
                 'title' => '吾輩は猫である',
                 'author' => '夏目漱石',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=1',
-                'date' => '1905-01-01',
+                'published_date' => '1905-01-01',
                 'description' => '名前のない一匹の猫の視点から、当時の人間たちの滑稽な行動や社会風俗をユーモアと皮肉たっぷりに描いた長編小説',
             ]
         );
@@ -39,7 +39,7 @@ class BookSeeder extends Seeder
                 'title' => '人を動かす',
                 'author' => 'D・カーネギー',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=2',
-                'date' => '1936-10-01',
+                'published_date' => '1936-10-01',
                 'description' => 'ビジネス現場においてだけでなく、家族・恋愛・交遊関係など老若男女問わず、あらゆるシチュエーションにおいて本書に挙げられているメソッドは有効であり、人生を豊かに過ごすための「人との付き合い方」を学ぶことができる',
             ]
         );
@@ -55,7 +55,7 @@ class BookSeeder extends Seeder
                 'title' => 'リーダブルコード',
                 'author' => 'Dustin Boswell',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=3',
-                'date' => '2012-06-23',
+                'published_date' => '2012-06-23',
                 'description' => 'コードは理解しやすくなければならない。本書はこの原則を日々のコーディングの様々な場面に当てはめる方法を紹介する。名前の付け方、コメントの書き方など表面上の改善について。コードを動かすための制御フロー、論理式、変数などループとロジックについて。またコードを再構成するための方法。さらにテストの書き方などについて、楽しいイラストと共に説明する。',
             ]
         );
@@ -71,7 +71,7 @@ class BookSeeder extends Seeder
                 'title' => '7つの習慣',
                 'author' => 'スティーブン・R・コヴィー',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=4',
-                'date' => '2013-08-30',
+                'published_date' => '2013-08-30',
                 'description' => '長期的・継続的に成果を出すための原則をまとめた世界的ベストセラー書籍',
             ]
         );
@@ -87,7 +87,7 @@ class BookSeeder extends Seeder
                 'title' => '坊っちゃん',
                 'author' => '夏目漱石',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=5',
-                'date' => '1906-04-01',
+                'published_date' => '1906-04-01',
                 'description' => '直情径行で正義感の強い江戸っ子の青年が、赴任した四国・松山の田舎中学で悪賢い偽善者たちと戦う痛快なユーモア小説',
             ]
         );
@@ -103,7 +103,7 @@ class BookSeeder extends Seeder
                 'title' => 'サピエンス全史',
                 'author' => 'ユヴァル・ノア・ハラリ',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=6',
-                'date' => '2016-09-08',
+                'published_date' => '2016-09-08',
                 'description' => 'ホモ・サピエンスの誕生から現代までの7万年の歴史を壮大なスケールで描いた世界的な大ベストセラー',
             ]
         );
@@ -119,7 +119,7 @@ class BookSeeder extends Seeder
                 'title' => 'Clean Code',
                 'author' => 'Robert C. Martin',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=7',
-                'date' => '2017-12-18',
+                'published_date' => '2017-12-18',
                 'description' => 'プログラミングにおける可読性・保守性を高めるための最高峰のバイブルとされる名著',
             ]
         );
@@ -135,7 +135,7 @@ class BookSeeder extends Seeder
                 'title' => '嫌われる勇気',
                 'author' => '岸見一郎・古賀史健',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=8',
-                'date' => '2013-12-13',
+                'published_date' => '2013-12-13',
                 'description' => '心理学界の巨匠アルフレッド・アドラーの思想（アドラー心理学）を、悩める「青年」と「哲人」の熱い対話形式で分かりやすく解き明かした一冊',
             ]
         );
@@ -151,7 +151,7 @@ class BookSeeder extends Seeder
                 'title' => ' 火花',
                 'author' => ' 又吉直樹',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=9',
-                'date' => '2015-03-11',
+                'published_date' => '2015-03-11',
                 'description' => '売れない若手芸人の徳永と、彼が師と仰ぐ天才肌の先輩芸人・神谷の2人を中心に、「お笑いとは何か」「生きるとは何か」を純文学の筆致でリアルかつ鮮烈に描き出しています。',
             ]
         );
@@ -167,7 +167,7 @@ class BookSeeder extends Seeder
                 'title' => 'FACTFULNESS',
                 'author' => 'ハンス・ロスリング',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=10',
-                'date' => '2019-01-11',
+                'published_date' => '2019-01-11',
                 'description' => 'データや事実（ファクト）に基づいて、世界を正しく見る（フルネス）重要性」を説いている点にあります。私たちは、ニュースや思い込みによって「世界はどんどん悪くなっている」と誤解しがちですが、客観的なデータを見れば「世界は確実に着実に良くなっている」ことが分かります。',
             ]
         );
@@ -183,7 +183,7 @@ class BookSeeder extends Seeder
                 'title' => 'コンテナ物語',
                 'author' => 'マルク・レビンソン',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=11',
-                'date' => '2007-01-18',
+                'published_date' => '2007-01-18',
                 'description' => '私たちが普段気にも留めないただの「鉄の箱（コンテナ）」が、いかにして世界経済の仕組みを根本から変え、グローバライゼーションを爆発的に加速させたかをダイナミックに描き出しています。',
             ]
         );
