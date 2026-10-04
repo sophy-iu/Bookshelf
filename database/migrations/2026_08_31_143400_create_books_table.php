@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->string('author')->nullable();
             $table->char('isbn', 13)->unique();
-            $table->datetime('date')->nullable();
-            $table->text('description');
+            $table->datetime('published_date')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

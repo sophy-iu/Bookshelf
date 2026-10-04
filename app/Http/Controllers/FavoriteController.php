@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class FavoriteController extends Controller
 {
     public function index()
     {
-        return view('books.show');
+        $books = auth()->user()
+            ->favoritebooks()
+            ->paginate(10);
+
+        return view('favorites.index', compact('books'));
     }
 
     public function toggle(Book $book)
     {
-        Auth::user()->favoriteBooks()->toggle($book->id);
+        $user = auth()->user();
 
-        return back();
+        $user->favoritebooks()->toggle($book->id);
+
+        return redirect()->back();
     }
 }

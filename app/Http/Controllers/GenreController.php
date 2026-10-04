@@ -10,19 +10,30 @@ class GenreController extends Controller
 {
     public function index()
     {
-        return view('genres.index');
+        $genres = Genre::all();
+
+        return view('genres.index', compact('genres'));
     }
 
-    public function show()
+    public function show(Genre $genre)
     {
-        $books = Book::paginate(10);
+        $books = $genre->books()
+            ->paginate(10);
 
-        return view('genres.show');
+        return view('genres.show', compact('genre', 'books'));
     }
 
-    public function edit()
+    public function create()
     {
-        $books = Book::paginate(10);
-        return view('genres.edit');
+        return view('genres.create');
+    }
+
+    public function destroy(Genre $genre)
+    {
+        $genre->delete();
+
+        return redirect()
+            ->route('genres.index')
+            ->with('success', 'ジャンルを削除しました');
     }
 }
