@@ -7,6 +7,7 @@ use App\Models\Genre;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookCreateRequest;
+use App\Http\Requests\BookUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
@@ -74,20 +75,30 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function update(Request $request, Book $book)
+    public function update(BookUpdateRequest $request, Book $book)
     {
-        $book->update([
-            'title' => $request->title,
-            
-        ]);
+        $this->authorize('update', $book);
 
-        return redirect()
-            ->route('books.show', $book)
-            ->with('success', '書籍を更新しました。');
+        $validated = $request->validated();
+
+        $genreIds = $validated['genres'];
+        unset($validated['genres']);
+
+        $book->update($validated);
+
+        $book->genres()->sync($genreIds);
+
+        return redirect()->route('books.show', $book);
     }
 
-    public function ranking(Book $book)
+    public function ranking()
     {
-        return view('ranking.index', compact('book'));
+        $rankedBooks = Book::whereHas('reviews')
+            ->withAvg('reviews', 'rating')
+            ->orderByDesc('reviews_avg_rating')
+            ->take(10)
+            ->get();
+
+        return view('ranking.index', compact('rankedBooks'));
     }
 }
