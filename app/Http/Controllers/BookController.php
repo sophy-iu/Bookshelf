@@ -2,29 +2,86 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Models\Genre;
-use App\Models\Review;
-use Illuminate\Http\Request;
 use App\Http\Requests\BookCreateRequest;
 use App\Http\Requests\BookUpdateRequest;
+use App\Models\Book;
+use App\Models\Genre;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class BookController extends Controller
 {
-    public function index()
+    /**
+     * 書籍一覧を検索・絞り込み・並び替えて表示する。
+     */
+    public function index(Request $request): View
     {
-        $books = Book::paginate(10);
+        $query = Book::query()
+            ->with('genres')
+            ->withAvg('reviews', 'rating');
 
-        return view('books.index', compact('books'));
+        // キーワード検索
+        if ($request->filled('keyword')) {
+            $keyword = $request->input('keyword');
+
+            $query->where(function ($query) use ($keyword) {
+                $query->where('title', 'like', "%{$keyword}%")
+                    ->orWhere('author', 'like', "%{$keyword}%");
+            });
+        }
+
+        // ジャンル絞り込み
+        if ($request->filled('genre')) {
+            $genreId = $request->input('genre');
+
+            $query->whereHas('genres', function ($query) use ($genreId) {
+                $query->where('genres.id', $genreId);
+            });
+        }
+
+        // 並び替え
+        switch ($request->input('sort', 'newest')) {
+            case 'oldest':
+                $query->orderBy('created_at');
+                break;
+
+            case 'rating':
+                $query->orderByDesc('reviews_avg_rating');
+                break;
+
+            case 'title':
+                $query->orderBy('title');
+                break;
+
+            default:
+                $query->orderByDesc('created_at');
+                break;
+        }
+
+        $books = $query
+            ->paginate(10)
+            ->withQueryString();
+
+        $genres = Genre::all();
+
+        return view('books.index', compact('books', 'genres'));
     }
 
-    public function show(Book $book)
+    /**
+     * 書籍詳細を表示する。
+     */
+    public function show(Book $book): View
     {
         return view('books.show', compact('book'));
     }
 
-    public function create(Book $book)
+    /**
+     * 書籍登録画面を表示する。
+     */
+    public function create(Book $book): View
     {
         $genres = Genre::all();
 
@@ -37,7 +94,10 @@ class BookController extends Controller
         ));
     }
 
-    public function store(BookCreateRequest $request)
+    /**
+     * 書籍を登録する。
+     */
+    public function store(BookCreateRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -51,7 +111,10 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function edit(Book $book)
+    /**
+     * 書籍編集画面を表示する。
+     */
+    public function edit(Book $book): View
     {
         $this->authorize('update', $book);
 
@@ -66,7 +129,10 @@ class BookController extends Controller
         ));
     }
 
-    public function destroy(Book $book)
+    /**
+     * 指定された書籍を削除する。
+     */
+    public function destroy(Book $book): RedirectResponse
     {
         $this->authorize('delete', $book);
 
@@ -75,8 +141,13 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function update(BookUpdateRequest $request, Book $book)
-    {
+    /**
+     * 指定された書籍を更新する。
+     */
+    public function update(
+        BookUpdateRequest $request,
+        Book $book
+    ): RedirectResponse {
         $this->authorize('update', $book);
 
         $validated = $request->validated();
@@ -91,7 +162,10 @@ class BookController extends Controller
         return redirect()->route('books.show', $book);
     }
 
-    public function ranking()
+    /**
+     * 書籍のランキングを表示する。
+     */
+    public function ranking(): View
     {
         $rankedBooks = Book::whereHas('reviews')
             ->withAvg('reviews', 'rating')
@@ -100,5 +174,15 @@ class BookController extends Controller
             ->get();
 
         return view('ranking.index', compact('rankedBooks'));
+    }
+
+    /**
+    * ISBNから書籍情報を検索する。
+    */
+    public function searchByIsbn(string $isbn): JsonResponse
+    {
+        return response()->json([
+            'isbn' => $isbn,
+        ]);
     }
 }

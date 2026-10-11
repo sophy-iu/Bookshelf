@@ -14,12 +14,12 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::where('email', 'yamada@example.com')->firstOrFail();
+        $users = User::all();
 
         $book1 = Book::firstOrCreate(
             ['isbn' => '9784101010014'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => '吾輩は猫である',
                 'author' => '夏目漱石',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=1',
@@ -35,7 +35,7 @@ class BookSeeder extends Seeder
         $book2 = Book::firstOrCreate(
             ['isbn' => '9784422100524'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => '人を動かす',
                 'author' => 'D・カーネギー',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=2',
@@ -51,7 +51,7 @@ class BookSeeder extends Seeder
         $book3 = Book::firstOrCreate(
             ['isbn' => '9784873115658'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => 'リーダブルコード',
                 'author' => 'Dustin Boswell',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=3',
@@ -67,7 +67,7 @@ class BookSeeder extends Seeder
         $book4 = Book::firstOrCreate(
             ['isbn' => '9784863940246'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => '7つの習慣',
                 'author' => 'スティーブン・R・コヴィー',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=4',
@@ -83,7 +83,7 @@ class BookSeeder extends Seeder
         $book5 = Book::firstOrCreate(
             ['isbn' => '9784101010021'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => '坊っちゃん',
                 'author' => '夏目漱石',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=5',
@@ -99,7 +99,7 @@ class BookSeeder extends Seeder
         $book6 = Book::firstOrCreate(
             ['isbn' => '9784309226712'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => 'サピエンス全史',
                 'author' => 'ユヴァル・ノア・ハラリ',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=6',
@@ -115,7 +115,7 @@ class BookSeeder extends Seeder
         $book7 = Book::firstOrCreate(
             ['isbn' => '9784048930598'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => 'Clean Code',
                 'author' => 'Robert C. Martin',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=7',
@@ -131,7 +131,7 @@ class BookSeeder extends Seeder
         $book8 = Book::firstOrCreate(
             ['isbn' => '9784478025819'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => '嫌われる勇気',
                 'author' => '岸見一郎・古賀史健',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=8',
@@ -147,7 +147,7 @@ class BookSeeder extends Seeder
         $book9 = Book::firstOrCreate(
             ['isbn' => '9784163902302'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => ' 火花',
                 'author' => ' 又吉直樹',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=9',
@@ -163,7 +163,7 @@ class BookSeeder extends Seeder
         $book10 = Book::firstOrCreate(
             ['isbn' => '9784822289607'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => 'FACTFULNESS',
                 'author' => 'ハンス・ロスリング',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=10',
@@ -179,7 +179,7 @@ class BookSeeder extends Seeder
         $book11 = Book::firstOrCreate(
             ['isbn' => '9784822251468'],
             [
-                'user_id' => $user->id,
+                'user_id' => $users->random()->id,
                 'title' => 'コンテナ物語',
                 'author' => 'マルク・レビンソン',
                 'image_url' => 'https://placehold.co/200x300/e2e8f0/475569?text=11',

@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -43,15 +45,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function books(){
+    /**
+     * ユーザーが登録した書籍とのリレーション。
+     */
+    public function books(): HasMany
+    {
         return $this->hasMany(Book::class);
     }
 
-    public function reviews(){
+    /**
+     * ユーザーが投稿したレビューとのリレーション。
+     */
+    public function reviews(): HasMany
+    {
         return $this->hasMany(Review::class);
     }
 
-    public function favoritebooks()
+    /**
+     * ユーザーがお気に入り登録した書籍とのリレーション。
+     */
+    public function favoritebooks(): BelongsToMany
     {
         return $this->belongsToMany(
             Book::class,
@@ -61,7 +74,10 @@ class User extends Authenticatable
         )->withTimestamps();
     }
 
-    public function likedReviews()
+    /**
+     * ユーザーがいいねしたレビューとのリレーション。
+     */
+    public function likedReviews(): BelongsToMany
     {
         return $this->belongsToMany(
             Review::class,
@@ -69,5 +85,13 @@ class User extends Authenticatable
             'user_id',
             'review_id'
         )->withTimestamps();
+    }
+
+    /**
+     * ユーザーの読書プランとのリレーション。
+     */
+    public function readingPlans(): HasMany
+    {
+        return $this->hasMany(ReadingPlan::class);
     }
 }
