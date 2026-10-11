@@ -4,6 +4,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/',[BookController::class,'index']) ->name('books.index');
+Route::get('/ranking', [BookController::class, 'ranking']) ->name('ranking.index');
 
 Route::middleware(['auth'])->group(function() {
        Route::get('/books/create', [BookController::class, 'create']) ->name('books.create');
@@ -24,6 +26,7 @@ Route::middleware(['auth'])->group(function() {
        Route::get('/books/{book}/edit', [BookController::class, 'edit']) ->name('books.edit');
        Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
        Route::put('/books/{book}/update', [BookController::class, 'update']) ->name('books.update');
+       Route::get('/books/isbn/{isbn}', [BookController::class, 'searchByIsbn'])->name('books.isbn');
 
        Route::post('/books/{book}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
        Route::post('/reviews/{review}/like', [ReviewController::class, 'toggleLike'])->name('reviews.like');
@@ -42,7 +45,7 @@ Route::middleware(['auth'])->group(function() {
        Route::get('/favorites', [FavoriteController::class, 'index']) ->name('favorites.index');
        Route::post('/favorites/{book}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 
-       Route::get('/ranking', [BookController::class, 'ranking']) ->name('ranking.index');
+       Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 });
 
 Route::get('/books/{book}', [BookController::class, 'show']) ->name('books.show');
