@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Api\V1\BookIndexRequest;
+use App\Http\Requests\Api\V1\BookStoreRequest;
 use App\Http\Requests\Api\V1\BookUpdateRequest;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class BookController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * リソースの一覧を表示する。
      */
     public function index(BookIndexRequest $request)
     {
@@ -46,26 +46,54 @@ class BookController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 新しく作成されたリソースをストレージに保存する。
      */
-    public function store(Request $request)
+    public function store(BookStoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $genreIds = $validated['genres'];
+        unset($validated['genres']);
+
+        $validated['user_id'] = $request->user()->id;
+
+        $book = DB::transaction(function () use ($validated, $genreIds) {
+            $book = Book::create($validated);
+
+            $book->genres()->attach($genreIds);
+
+            return $book;
+        });
+
+        $book->load('genres')
+            ->loadAvg('reviews', 'rating')
+            ->loadCount('reviews');
+
+        return (new BookResource($book))
+            ->response()
+            ->setStatusCode(201);
     }
 
     /**
-     * Display the specified resource.
+     * 指定されたリソースを表示する。
      */
-    public function show(string $id)
+    public function show(Book $book)
     {
-        //
+        $book->load([
+            'genres',
+            'reviews.user',
+        ]);
+
+        return new BookResource($book);
     }
 
     /**
-     * Update the specified resource in storage.
+     * ストレージ内の指定されたリソースを更新する。
      */
     public function update(BookUpdateRequest $request, Book $book)
     {
+        $this->authorize('update', $book);
+
         $validated = $request->validated();
 
         $genreIds = $validated['genres'];
@@ -85,10 +113,12 @@ class BookController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * ストレージから指定されたリソースを削除する。
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
+        $this->authorize('delete', $book);
+
         $book->delete();
 
         return response()->noContent();

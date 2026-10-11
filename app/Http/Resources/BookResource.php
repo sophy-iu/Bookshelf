@@ -36,6 +36,17 @@ class BookResource extends JsonResource
 
             'reviews_count' => $this->reviews_count,
 
+            'reviews' => $this->whenLoaded('reviews', function () {
+                return $this->reviews->map(function ($review) {
+                    return [
+                        'user_name' => $review->user->name,
+                        'rating' => $review->rating,
+                        'comment' => $review->comment,
+                        'created_at' => $review->created_at,
+                    ];
+                });
+            }),
+
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
