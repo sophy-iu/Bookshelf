@@ -83,24 +83,6 @@ GOOGLE_BOOKS_API_KEY=取得したAPIキー
 ./vendor/bin/sail npm run dev
 ```
 
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=sail
-DB_PASSWORD=password
-
-- Google Books APIキーを `.env` に設定します。
-
-GOOGLE_BOOKS_API_KEY=取得したAPIキー
-
-- ./vendor/bin/sail up -d
-- ./vendor/bin/sail artisan key:generate
-- ./vendor/bin/sail npm install
-- ./vendor/bin/sail artisan migrate --seed
-- ./vendor/bin/sail npm run dev
-
-
 ## 使用技術
 - PHP 8.5
 - Laravel 10.x
