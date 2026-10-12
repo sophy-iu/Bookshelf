@@ -28,12 +28,11 @@ class BookUpdateRequest extends FormRequest
             'author' => ['required', 'string'],
             'isbn' => [
                 'nullable',
-                'string',
-                'size:13',
+                'digits:13',
                 Rule::unique('books', 'isbn')
                     ->ignore($this->route('book')),
             ],
-            'published_date' => ['nullable', 'date'],
+            'published_date' => ['nullable', 'date', 'before:today'],
             'description' => ['nullable', 'string'],
             'image_url' => ['nullable', 'url'],
             'genres' => ['required', 'array', 'min:1'],
@@ -49,21 +48,15 @@ class BookUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => 'タイトルを入力してください。',
-            'author.required' => '著者名を入力してください。',
-
-            'isbn.size' => 'ISBNは13桁で入力してください。',
-            'isbn.unique' => 'このISBNはすでに登録されています。',
-
-            'published_date.date' => '出版日は正しい日付形式で入力してください。',
-
-            'image_url.url' => '画像URLは正しいURL形式で入力してください。',
-
-            'genres.required' => 'ジャンルを選択してください。',
-            'genres.array' => 'ジャンルは配列で指定してください。',
-            'genres.min' => 'ジャンルを1つ以上選択してください。',
-            'genres.*.integer' => 'ジャンルIDは整数で指定してください。',
-            'genres.*.exists' => '指定されたジャンルが存在しません。',
+            'title.required' => 'タイトルを入力してください',
+            'author.required' => '著者名を入力してください',
+            'isbn.digits' => 'ISBNは半角数字13桁で入力してください',
+            'isbn.unique' => '入力されたISBNが重複しています',
+            'published_date.date' => '有効な日付を選択してください',
+            'published_date.before' => '有効な日付を選択してください',
+            'image_url.url' => 'URL形式で指定してください',
+            'genres.required' => 'ジャンルを一つ以上選択してください',
+            'genres.min' => 'ジャンルを一つ以上選択してください',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Book;
 use App\Models\Genre;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -134,6 +135,41 @@ class GenreTest extends TestCase
         $this->assertDatabaseMissing('genres', [
             'id' => $genre->id,
             'name' => '削除するジャンル',
+        ]);
+    }
+
+    public function test_関連する書籍があるジャンルは削除できない(): void
+    {
+        $user = User::factory()->create();
+
+        $genre = Genre::create([
+            'name' => '技術書',
+        ]);
+
+        $book = Book::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $book->genres()->attach($genre->id);
+
+        $response = $this
+            ->actingAs($user)
+            ->delete(route('genres.destroy', $genre));
+
+        $response
+            ->assertRedirect(route('genres.index'))
+            ->assertSessionHas(
+                'error',
+                '関連する書籍が存在するため、このジャンルは削除できません。'
+            );
+
+        $this->assertDatabaseHas('genres', [
+            'id' => $genre->id,
+        ]);
+
+        $this->assertDatabaseHas('book_genre', [
+            'book_id' => $book->id,
+            'genre_id' => $genre->id,
         ]);
     }
 }
