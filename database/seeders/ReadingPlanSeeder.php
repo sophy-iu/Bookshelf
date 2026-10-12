@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ReadingPlanStatus;
 use App\Models\Book;
 use App\Models\ReadingPlan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use App\Enums\ReadingPlanStatus;
 
 class ReadingPlanSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class ReadingPlanSeeder extends Seeder
             'user_id' => $yamada->id,
             'book_id' => $books[0]->id,
             'target_date' => Carbon::today()->addDays(3),
-            'status' => ReadingPlanStatus::IN_PROGRESS,
+            'status' => ReadingPlanStatus::InProgress,
         ]);
 
         // 山田太郎：当日リマインダー対象
@@ -31,7 +31,7 @@ class ReadingPlanSeeder extends Seeder
             'user_id' => $yamada->id,
             'book_id' => $books[1]->id,
             'target_date' => Carbon::today(),
-            'status' => ReadingPlanStatus::IN_PROGRESS,
+            'status' => ReadingPlanStatus::InProgress,
         ]);
 
         // 山田太郎：期限3日超過
@@ -39,7 +39,7 @@ class ReadingPlanSeeder extends Seeder
             'user_id' => $yamada->id,
             'book_id' => $books[2]->id,
             'target_date' => Carbon::today()->subDays(3),
-            'status' => ReadingPlanStatus::IN_PROGRESS,
+            'status' => ReadingPlanStatus::InProgress,
         ]);
 
         // 山田太郎：リマインダー対象外
@@ -47,7 +47,7 @@ class ReadingPlanSeeder extends Seeder
             'user_id' => $yamada->id,
             'book_id' => $books[3]->id,
             'target_date' => Carbon::today()->addDays(7),
-            'status' => ReadingPlanStatus::IN_PROGRESS,
+            'status' => ReadingPlanStatus::InProgress,
         ]);
 
         // 山田太郎：完了済み
@@ -55,7 +55,7 @@ class ReadingPlanSeeder extends Seeder
             'user_id' => $yamada->id,
             'book_id' => $books[4]->id,
             'target_date' => Carbon::today()->subDays(10),
-            'status' => ReadingPlanStatus::COMPLETED,
+            'status' => ReadingPlanStatus::Completed,
             'completed_at' => Carbon::today()->subDays(5),
         ]);
 
@@ -64,7 +64,7 @@ class ReadingPlanSeeder extends Seeder
             'user_id' => $suzuki->id,
             'book_id' => $books[5]->id,
             'target_date' => Carbon::today()->addDays(5),
-            'status' => ReadingPlanStatus::IN_PROGRESS,
+            'status' => ReadingPlanStatus::InProgress,
         ]);
     }
 }

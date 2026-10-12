@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BookController;
 use Illuminate\Support\Facades\Route;
@@ -16,17 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::prefix('v1')->name('api.')->group(function () {
 
-     // 読み取り系：認証不要
+    // ログイン：認証不要
+    Route::post('/login', [AuthController::class, 'login'])
+        ->name('login');
+
+    // 読み取り系：認証不要
     Route::get('/books', [BookController::class, 'index'])
         ->name('books.index');
 
     Route::get('/books/{book}', [BookController::class, 'show'])
         ->name('books.show');
-
 
     // 書き込み系：Sanctum認証必須
     Route::middleware('auth:sanctum')->group(function () {

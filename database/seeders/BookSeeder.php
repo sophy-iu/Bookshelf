@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Book;
-use App\Models\User;
 use App\Models\Genre;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class BookSeeder extends Seeder
 {
@@ -44,7 +44,7 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('name', ['ビジネス','自己啓発'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス', '自己啓発'])->get();
 
         $book2->genres()->sync($genre->pluck('id'));
 
@@ -76,7 +76,7 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('name', ['ビジネス','自己啓発'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス', '自己啓発'])->get();
 
         $book4->genres()->sync($genre->pluck('id'));
 
@@ -108,7 +108,7 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('name', ['歴史','科学'])->get();
+        $genre = Genre::whereIn('name', ['歴史', '科学'])->get();
 
         $book6->genres()->sync($genre->pluck('id'));
 
@@ -172,7 +172,7 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('name', ['ビジネス','科学'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス', '科学'])->get();
 
         $book10->genres()->sync($genre->pluck('id'));
 
@@ -188,7 +188,7 @@ class BookSeeder extends Seeder
             ]
         );
 
-        $genre = Genre::whereIn('name', ['ビジネス','歴史'])->get();
+        $genre = Genre::whereIn('name', ['ビジネス', '歴史'])->get();
 
         $book11->genres()->sync($genre->pluck('id'));
     }

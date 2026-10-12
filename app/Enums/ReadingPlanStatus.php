@@ -4,7 +4,31 @@ namespace App\Enums;
 
 enum ReadingPlanStatus: string
 {
-    case IN_PROGRESS = 'in_progress';
-    case COMPLETED = 'completed';
-    case EXPIRED = 'expired';
+    case InProgress = 'in_progress';
+    case Completed = 'completed';
+    case Expired = 'expired';
+
+    /**
+     * 読書計画の状態に対応する日本語ラベルを取得する。
+     */
+    public function label(): string
+    {
+        return match ($this) {
+            self::InProgress => '進行中',
+            self::Completed => '完了',
+            self::Expired => '期限切れ',
+        };
+    }
+
+    /**
+     * 読書計画の状態に対応するバッジ用CSSクラスを取得する。
+     */
+    public function badgeClass(): string
+    {
+        return match ($this) {
+            self::InProgress => 'bg-blue-100 text-blue-800',
+            self::Completed => 'bg-green-100 text-green-800',
+            self::Expired => 'bg-red-100 text-red-800',
+        };
+    }
 }

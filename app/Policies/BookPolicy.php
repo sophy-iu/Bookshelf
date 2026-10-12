@@ -8,7 +8,7 @@ use App\Models\User;
 class BookPolicy
 {
     /**
-     * Determine whether the user can view any models.
+     * 書籍一覧を閲覧できるか判定する。
      */
     public function viewAny(User $user): bool
     {
@@ -16,7 +16,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * 指定された書籍を閲覧できるか判定する。
      */
     public function view(User $user, Book $book): bool
     {
@@ -24,7 +24,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * 書籍を登録できるか判定する。
      */
     public function create(User $user): bool
     {
@@ -32,7 +32,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * 指定された書籍を更新できるか判定する。
      */
     public function update(User $user, Book $book): bool
     {
@@ -40,7 +40,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * 指定された書籍を削除できるか判定する。
      */
     public function delete(User $user, Book $book): bool
     {
@@ -48,7 +48,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * 指定された書籍を復元できるか判定する。
      */
     public function restore(User $user, Book $book): bool
     {
@@ -56,7 +56,7 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * 指定された書籍を完全に削除できるか判定する。
      */
     public function forceDelete(User $user, Book $book): bool
     {

@@ -14,11 +14,11 @@ class ReportController extends Controller
         $user = auth()->user();
 
         $ratingDistribution = collect(range(1, 5))
-        ->map(function ($rating) use ($user) {
-            return $user->reviews()
-                ->where('rating', $rating)
-                ->count();
-        });
+            ->map(function ($rating) use ($user) {
+                return $user->reviews()
+                    ->where('rating', $rating)
+                    ->count();
+            });
 
         $topRatedBooks = $user->reviews()
             ->with('book')

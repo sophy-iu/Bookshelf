@@ -49,7 +49,7 @@ class ReadingPlan extends Model
     {
         return $query->where(
             'status',
-            ReadingPlanStatus::IN_PROGRESS->value
+            ReadingPlanStatus::InProgress->value
         );
     }
 

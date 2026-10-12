@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BookIndexRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * リクエストを実行する権限があるか判定する。
      */
     public function authorize(): bool
     {
@@ -15,9 +16,9 @@ class BookIndexRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * リクエストに適用されるバリデーションルールを取得する。
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -26,24 +27,6 @@ class BookIndexRequest extends FormRequest
             'genre_id' => ['nullable', 'integer', 'exists:genres,id'],
             'page' => ['nullable', 'integer', 'min:1'],
             'per_page' => ['nullable', 'integer', 'min:1', 'max:100'],
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'keyword.string' => 'キーワードは文字列で指定してください',
-            'keyword.max' => 'キーワードは255文字以内で指定してください',
-
-            'genre_id.integer' => 'ジャンルIDは整数で指定してください',
-            'genre_id.exists' => '指定されたジャンルは存在しません',
-
-            'page.integer' => 'ページ番号は整数で指定してください',
-            'page.min' => 'ページ番号は1以上で指定してください',
-
-            'per_page.integer' => '1ページあたりの件数は整数で指定してください',
-            'per_page.min' => '1ページあたりの件数は1以上で指定してください',
-            'per_page.max' => '1ページあたりの件数は100以下で指定してください',
         ];
     }
 }

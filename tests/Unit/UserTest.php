@@ -3,8 +3,8 @@
 namespace Tests\Unit;
 
 use App\Models\Book;
-use App\Models\User;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

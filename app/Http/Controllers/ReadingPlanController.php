@@ -2,26 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ReadingPlan;
-use Illuminate\View\View;
 use App\Enums\ReadingPlanStatus;
 use App\Http\Requests\StoreReadingPlanRequest;
+use App\Http\Requests\UpdateReadingPlanRequest;
 use App\Models\Book;
+use App\Models\ReadingPlan;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ReadingPlanController extends Controller
 {
     /**
      * 自分の読書計画一覧を表示する
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $readingPlans = ReadingPlan::with('book')
-            ->where('user_id', auth()->id())
+        $currentStatus = $request->input('status');
+
+        $query = ReadingPlan::with('book')
+            ->where('user_id', auth()->id());
+
+        if ($currentStatus) {
+            $query->where('status', $currentStatus);
+        }
+
+        $readingPlans = $query
             ->orderBy('target_date')
             ->get();
 
-        return view('reading-plans.index', compact('readingPlans'));
+        return view('reading-plans.index', compact(
+            'readingPlans',
+            'currentStatus'
+        ));
     }
 
     /**
@@ -45,7 +58,7 @@ class ReadingPlanController extends Controller
             'user_id' => auth()->id(),
             'book_id' => $validated['book_id'],
             'target_date' => $validated['target_date'],
-            'status' => ReadingPlanStatus::IN_PROGRESS,
+            'status' => ReadingPlanStatus::InProgress,
             'completed_at' => null,
         ]);
 
@@ -106,7 +119,7 @@ class ReadingPlanController extends Controller
         $this->authorize('update', $readingPlan);
 
         $readingPlan->update([
-            'status' => ReadingPlanStatus::COMPLETED,
+            'status' => ReadingPlanStatus::Completed,
             'completed_at' => now(),
         ]);
 

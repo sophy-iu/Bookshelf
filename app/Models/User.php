@@ -64,7 +64,7 @@ class User extends Authenticatable
     /**
      * ユーザーがお気に入り登録した書籍とのリレーション。
      */
-    public function favoritebooks(): BelongsToMany
+    public function favoriteBooks(): BelongsToMany
     {
         return $this->belongsToMany(
             Book::class,

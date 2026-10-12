@@ -4,12 +4,11 @@ namespace App\Policies;
 
 use App\Models\Review;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class ReviewPolicy
 {
     /**
-     * Determine whether the user can view any models.
+     * レビュー一覧を閲覧できるか判定する。
      */
     public function viewAny(User $user): bool
     {
@@ -17,7 +16,7 @@ class ReviewPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * 指定されたレビューを閲覧できるか判定する。
      */
     public function view(User $user, Review $review): bool
     {
@@ -25,7 +24,7 @@ class ReviewPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * レビューを登録できるか判定する。
      */
     public function create(User $user): bool
     {
@@ -33,7 +32,7 @@ class ReviewPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * 指定されたレビューを更新できるか判定する。
      */
     public function update(User $user, Review $review): bool
     {
@@ -41,7 +40,7 @@ class ReviewPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * 指定されたレビューを削除できるか判定する。
      */
     public function delete(User $user, Review $review): bool
     {
@@ -49,7 +48,7 @@ class ReviewPolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * 指定されたレビューを復元できるか判定する。
      */
     public function restore(User $user, Review $review): bool
     {
@@ -57,7 +56,7 @@ class ReviewPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * 指定されたレビューを完全に削除できるか判定する。
      */
     public function forceDelete(User $user, Review $review): bool
     {

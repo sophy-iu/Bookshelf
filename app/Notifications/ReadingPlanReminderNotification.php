@@ -13,8 +13,7 @@ class ReadingPlanReminderNotification extends Notification
     public function __construct(
         private ReadingPlan $readingPlan,
         private string $timing
-    ) {
-    }
+    ) {}
 
     /**
      * 通知方法
@@ -59,17 +58,13 @@ class ReadingPlanReminderNotification extends Notification
         $bookTitle = $this->readingPlan->book->title;
 
         return match ($this->timing) {
-            'three_days_before' =>
-                "「{$bookTitle}」の読書目標日まであと3日です。",
+            'three_days_before' => "「{$bookTitle}」の読書目標日まであと3日です。",
 
-            'on_due_date' =>
-                "「{$bookTitle}」は今日が読書目標日です。",
+            'on_due_date' => "「{$bookTitle}」は今日が読書目標日です。",
 
-            'three_days_after' =>
-                "「{$bookTitle}」の読書目標日を3日過ぎています。",
+            'three_days_after' => "「{$bookTitle}」の読書目標日を3日過ぎています。",
 
-            default =>
-                "「{$bookTitle}」の読書計画を確認してください。",
+            default => "「{$bookTitle}」の読書計画を確認してください。",
         };
     }
 }

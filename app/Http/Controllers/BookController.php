@@ -6,11 +6,13 @@ use App\Http\Requests\BookCreateRequest;
 use App\Http\Requests\BookUpdateRequest;
 use App\Models\Book;
 use App\Models\Genre;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\View\View;
 
 class BookController extends Controller
 {
@@ -104,9 +106,15 @@ class BookController extends Controller
         $genreIds = $validated['genres'];
         unset($validated['genres']);
 
-        $book = Auth::user()->books()->create($validated);
+        $book = DB::transaction(function () use ($validated, $genreIds) {
+            // 書籍を登録する
+            $book = Auth::user()->books()->create($validated);
 
-        $book->genres()->sync($genreIds);
+            // ジャンルを紐付ける
+            $book->genres()->sync($genreIds);
+
+            return $book;
+        });
 
         return redirect()->route('books.index');
     }
@@ -155,9 +163,11 @@ class BookController extends Controller
         $genreIds = $validated['genres'];
         unset($validated['genres']);
 
-        $book->update($validated);
+        DB::transaction(function () use ($book, $validated, $genreIds) {
+            $book->update($validated);
 
-        $book->genres()->sync($genreIds);
+            $book->genres()->sync($genreIds);
+        });
 
         return redirect()->route('books.show', $book);
     }
@@ -177,12 +187,37 @@ class BookController extends Controller
     }
 
     /**
-    * ISBNから書籍情報を検索する。
-    */
+     * ISBNから書籍情報を検索する。
+     */
     public function searchByIsbn(string $isbn): JsonResponse
     {
+        $response = Http::get('https://www.googleapis.com/books/v1/volumes', [
+            'q' => 'isbn:'.$isbn,
+            'key' => config('services.google_books.api_key'),
+        ]);
+
+        if ($response->failed()) {
+            return response()->json([
+                'message' => 'Google Books APIの取得に失敗しました。',
+            ], 500);
+        }
+
+        $data = $response->json();
+
+        if (empty($data['items'])) {
+            return response()->json([
+                'message' => '書籍が見つかりませんでした。',
+            ], 404);
+        }
+
+        $volumeInfo = $data['items'][0]['volumeInfo'];
+
         return response()->json([
-            'isbn' => $isbn,
+            'title' => $volumeInfo['title'] ?? null,
+            'author' => $volumeInfo['authors'][0] ?? null,
+            'published_date' => $volumeInfo['publishedDate'] ?? null,
+            'description' => $volumeInfo['description'] ?? null,
+            'image_url' => $volumeInfo['imageLinks']['thumbnail'] ?? null,
         ]);
     }
 }

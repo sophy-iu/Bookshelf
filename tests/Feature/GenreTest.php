@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use App\Models\Genre;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -30,7 +30,7 @@ class GenreTest extends TestCase
         $response->assertSee('小説');
         $response->assertSee('技術書');
     }
-    
+
     public function test_ジャンル登録画面を表示できる(): void
     {
         $user = User::factory()->create();
