@@ -15,7 +15,7 @@ git clone git@github.com:sophy-iu/Bookshelf.git
 2. プロジェクトディレクトリへ移動
 
 ```bash
-cd bookshelf-app
+cd Bookshelf
 ```
 
 3. Composerパッケージをインストール
