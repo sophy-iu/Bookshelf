@@ -167,3 +167,6 @@ GOOGLE_BOOKS_API_KEY=取得したAPIキー
 - 書籍登録：POST http://localhost/api/v1/books
 - 書籍更新：PUT http://localhost/api/v1/books/{book}
 - 書籍削除：DELETE http://localhost/api/v1/books/{book}
+
+## 作成者
+羽根田　哲太
