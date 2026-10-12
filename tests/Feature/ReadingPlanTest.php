@@ -342,4 +342,86 @@ class ReadingPlanTest extends TestCase
             $readingPlan->completed_at
         );
     }
+
+    public function test_同じ書籍の進行中の読書計画は重複登録できない(): void
+    {
+        $user = User::factory()->create();
+        $book = Book::factory()->create();
+
+        ReadingPlan::create([
+            'user_id' => $user->id,
+            'book_id' => $book->id,
+            'target_date' => now()->addDays(7)->toDateString(),
+            'status' => ReadingPlanStatus::InProgress,
+            'completed_at' => null,
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->post(route('reading-plans.store'), [
+                'book_id' => $book->id,
+                'target_date' => now()->addDays(14)->toDateString(),
+            ]);
+
+        $response->assertSessionHasErrors([
+            'book_id' => 'この書籍はすでに読書計画に登録されています。',
+        ]);
+
+        $this->assertDatabaseCount('reading_plans', 1);
+    }
+
+    public function test_完了済みの読書計画は編集できない(): void
+    {
+        $user = User::factory()->create();
+        $book = Book::factory()->create();
+
+        $readingPlan = ReadingPlan::create([
+            'user_id' => $user->id,
+            'book_id' => $book->id,
+            'target_date' => now()->addDays(7)->toDateString(),
+            'status' => ReadingPlanStatus::Completed,
+            'completed_at' => now(),
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->put(route('reading-plans.update', $readingPlan), [
+                'target_date' => now()->addDays(14)->toDateString(),
+            ]);
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseHas('reading_plans', [
+            'id' => $readingPlan->id,
+            'target_date' => now()->addDays(7)->toDateString(),
+        ]);
+    }
+
+    public function test_期限切れの読書計画は編集できない(): void
+    {
+        $user = User::factory()->create();
+        $book = Book::factory()->create();
+
+        $readingPlan = ReadingPlan::create([
+            'user_id' => $user->id,
+            'book_id' => $book->id,
+            'target_date' => now()->subDay()->toDateString(),
+            'status' => ReadingPlanStatus::Expired,
+            'completed_at' => null,
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->put(route('reading-plans.update', $readingPlan), [
+                'target_date' => now()->addDays(7)->toDateString(),
+            ]);
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseHas('reading_plans', [
+            'id' => $readingPlan->id,
+            'target_date' => now()->subDay()->toDateString(),
+            'status' => ReadingPlanStatus::Expired->value,
+        ]);
+    }
 }

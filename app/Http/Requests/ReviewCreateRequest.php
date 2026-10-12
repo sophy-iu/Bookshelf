@@ -27,4 +27,19 @@ class ReviewCreateRequest extends FormRequest
             'comment' => ['required', 'string'],
         ];
     }
+
+    /**
+     * バリデーションエラーメッセージを返す。
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'rating.required' => '評価値を入力してください',
+            'rating.integer' => '評価値は整数で入力してください',
+            'rating.between' => '評価値は1から5の間で入力してください',
+            'comment.required' => 'コメントを入力してください',
+        ];
+    }
 }
